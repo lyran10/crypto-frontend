@@ -1,0 +1,160 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* input */
+.custom-field {
+  position: relative;
+  font-size: 14px;
+  border-top: 20px solid transparent;
+  margin-bottom: 5px;
+  --field-padding: 12px;
+}
+
+.custom-field input {
+  display: flex;
+  justify-content: flex-start;
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #f2f2f2;
+  padding: var(--field-padding);
+  border-radius: 3px;
+  outline: none;
+  font-size: 14px;
+}
+
+.custom-field .placeholder {
+  position: absolute;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  top: 22px;
+  line-height: 100%;
+  transform: translateY(-50%);
+  color: white;
+  background-color: black;
+  transition: 
+    top 0.3s ease,
+    color 0.3s ease,
+    font-size 0.3s ease;
+}
+
+.custom-field input.dirty + .placeholder,
+.custom-field input:focus + .placeholder,
+.custom-field input:not(:placeholder-shown) + .placeholder {
+  top: -10px;
+  font-size: 10px;
+  color: #222;
+}
+
+.custom-field .error-message {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 12px;
+  background: #d30909;
+  color: #fff;
+  height: 24px;
+}
+
+.custom-field .error-message:empty {
+  opacity: 0;
+}
+
+.custom-field.one input {
+  background: none;
+  border: 2px solid gold;
+  transition: border-color 0.3s ease;
+  width: 300px;
+}
+
+.custom-field.one input + .placeholder {
+  left: 8px;
+  padding: 0 5px;
+}
+
+.custom-field.one input.dirty,
+.custom-field.one input:not(:placeholder-shown),
+.custom-field.one input:focus {
+  border-color: black;
+  transition-delay: 0.1s;
+}
+
+.custom-field.one input.dirty + .placeholder,
+.custom-field.one input:not(:placeholder-shown) + .placeholder,
+.custom-field.one input:focus + .placeholder {
+  top: 0;
+  font-size: 10px;
+  color: white;
+  background: #fff;
+  width: auto;
+  background-color: black;
+  font-size: 15px;
+}
+
+/* table */
+
+.table > :not(caption) > * > *{
+  box-shadow: none;
+}
+
+.table-bordered > :not(caption) > * > *{
+  border-width: 0px;
+}
+
+th:first-child{
+  border-top-left-radius: 5px;
+}
+
+th:last-child{
+  border-top-right-radius: 5px;
+}
+
+tr:hover{
+  box-shadow: 0px 0px 8px 2px goldenrod;
+  transform: scale(1);
+  transition: 0.2s;
+
+}
+
+.MuiPaginationItem-root{
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.coinInfo{
+  min-height : 80px
+}
+
+/* media query */
+ 
+@media all and (max-width: 480px) { 
+
+  .table > :not(caption) > * > *{
+    padding: 5px;
+  }
+
+  .custom-field.one input {
+    width: 200px;
+  }
+
+  .coinInfo{
+    min-height : 120px
+  }
+
+  .imgAndName{
+    padding-top: 20px;
+  }
+  
+}
+
+@media all and (max-width: 310px) { 
+  .container{
+    --bs-gutter-x: 0px;
+  }
+}

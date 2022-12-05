@@ -1,0 +1,59 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+.banner{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: black;
+  min-height: 700px;
+  max-width: 100%;
+  margin: 0px 0px 0px 0px;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid white;
+  background-image:  url(https://images.squarespace-cdn.com/content/v1/5d4cfd87082420000108b311/1566718849902-809OYSILCPJLAKT97XWE/futuristic-technology-abstract-background-beautiful-footage-087637197_prevstill.jpeg?format=2500w);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.header{
+  font-size: 70px;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+a:hover{
+  color: white;
+}
+
+.carousel-control-prev-icon,.carousel-control-next-icon,.eWjCzc,.eAyARa{
+  display: none;
+}
+
+.carousel-indicators{
+  display: none;
+}
+
+.krmNah{
+  background-color: white;
+}
+
+
+/* media query */
+ 
+@media all and (max-width: 480px) { 
+    .banner{
+      width:"100%"
+    }
+
+    .header{
+      font-size: 50px;
+    }
+}

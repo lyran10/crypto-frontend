@@ -1,0 +1,40 @@
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+.form{
+  box-shadow: 0px 0px 8px 2px goldenrod;
+  border-radius: 5px;
+}
+
+.input:focus {
+  outline: none;
+  border:2px solid gold;
+}
+
+/* modal */
+.modal-body{
+  padding: 0px;
+  flex: 0 0 auto;
+}
+
+/* media query */
+ 
+@media all and (max-width: 950px){
+      .input{
+          width: 30px;
+      }
+ }
+
+ @media all and (max-width: 575.98px){
+  .modal-fullscreen-sm-down .modal-content {
+      height: 40%;
+      width: 90%;
+      margin: auto;
+      
+  }
+  
+  }
+ 
+

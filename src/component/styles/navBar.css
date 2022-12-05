@@ -1,0 +1,168 @@
+*{
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.navbar{
+  z-index: 10;
+}
+
+.select{
+  width:60%
+}
+
+/* side nav bar */
+
+.sideBar{
+  min-width: 100%;
+  position: fixed;
+  z-index: 5;
+  top: 50px;
+  left: 100%;
+  right: 0;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.miniSideBar{
+  min-width: 100%;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.sideBarUl{
+  width: 400px;
+  padding-left: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px ;
+}
+
+li{
+  list-style: none;
+  padding: 5px;
+}
+
+.watchList{
+  width: 350px;
+}
+
+.watchListLi{
+  border-bottom: solid 1px white;
+}
+
+.watchListUl{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 5px;
+  width: 100%;
+} 
+
+/* classes to open and close the side nav */
+.translateback{
+  transform: translateX(-400px);
+}
+
+.translate{
+  transform: translateX(0px);
+}
+
+/* classes to open and close the mini nav */
+.minitranslateback{
+  transform: translateY(-400px);
+}
+
+.minitranslate{
+  transform: translateY(50px);
+}
+
+/* loading page */
+.loadingPage{
+  position: absolute;
+  height:100vh;
+  width:100vw;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: black;
+}
+
+/* modal */
+.modal-body,.modal-footer {
+  background-color:#262626;
+  color: white;
+}
+
+.mini{
+  display: none;
+}
+
+.miniSide{
+  display: none;
+}
+
+/* media query */
+
+@media all and (max-width: 550px) { 
+  .sideBar{
+    left: 0;
+    right: 0;
+    top:0;
+    bottom:0;
+    border-radius: 5px;
+    transition: 0.3s;
+    margin-top: 20px;
+    height: 100vh;
+  }
+
+.sideBarUl{
+    width:100%;
+  }
+
+  .translateback{
+    transform: translateX(0px);
+  }
+
+  .translate{
+    transform: translateX(700px);
+  }
+
+  .watchList{
+    width: 300px
+  }
+}
+
+ @media all and (max-width: 768px) {
+
+  .select{
+    display: none;
+  }
+
+  .miniSide{
+    display: flex;
+  }
+
+  .mini{
+    display: block;
+  }
+
+  .logSignModal{
+    display: none;
+  }
+
+ }
+
+
+
+

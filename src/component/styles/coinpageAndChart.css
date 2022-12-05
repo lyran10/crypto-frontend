@@ -1,0 +1,51 @@
+body{
+  background-color: black;
+}
+
+
+.coin{
+  margin-top: 30px;
+  width:30%;
+  border-right: solid 2px grey;
+}
+
+.chart{
+  width: 75vw;
+  height: 85vh;
+}
+
+
+/* media query */
+ 
+@media all and (max-width: 1000px){
+      .container1{
+        flex-direction: column;
+      }
+
+      .coin{
+        text-align: center;
+        width:100%;
+        border-right: none;
+        margin-top: 80px;
+     }
+
+     .chart{
+      width: 80vw;
+      height: 60vh;
+    }
+
+    .buttons{
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+ }
+ 
+@media all and (max-width: 480px) {
+  .chart{
+    width: 100vw;
+  }
+
+  .coin{
+    margin-top: 80px;
+}
+ }
