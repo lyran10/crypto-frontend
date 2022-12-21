@@ -20,7 +20,7 @@ export const Home = () => {
       }
       getdata();
     },
-    [addingCoin, JSON.parse(localStorage.getItem("id"))],
+    [addingCoin,localStorage.getItem("id")],
     login
   );
 

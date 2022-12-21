@@ -33,7 +33,7 @@ export const SignInModal = (props) => {
 // create user in the data base
   const signIn = () => {
     axios
-      .post("/signup", inputs)
+      .post("http://localhost:4000/signup", inputs)
       .then((data) => {
         if (data.data.Registered) {
           errorToasts(data.data.Registered);

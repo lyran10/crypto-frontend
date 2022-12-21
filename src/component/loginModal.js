@@ -38,18 +38,22 @@ export const LoginModal = (props) => {
 // check if user name exists in the data base, if exists set the state with the info and send a log in message
   const checkLogin = () => {
     axios
-    .post("/login", inputs, { withCredentials: true })
+    .post("http://localhost:4000/login", inputs, { withCredentials: true })
     .then((data) => {
+      console.log(data.data.user)
       setTimeout(() => {setLogin(data.data.status);}, 500);
        if(data.data.notExists) {
         errorToasts(data.data.notExists);
       }else if (data.data.user) {
         setUserName(data.data.user.user_name);
-        setUserId(data.data.user.id);
+        setUserId(data.data.user.user_id);
+        localStorage.setItem("id", JSON.stringify(data.data.user.user_id));
+        console.log(JSON.parse(localStorage.getItem("id")))
 
-        if (JSON.parse(localStorage.getItem("id")) == null) {
-          localStorage.setItem("id", JSON.stringify(data.data.user.id));
-        }
+        // if (localStorage.getItem("id") == null ||localStorage.getItem("id") === undefined) {
+        //   localStorage.setItem("id", JSON.stringify(data.data.user.user_id));
+        //   console.log(JSON.parse(localStorage.getItem("id")))
+        // }
         SpinnerLoading();
         setShow(false) 
         setInputs("");

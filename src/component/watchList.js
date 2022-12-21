@@ -32,14 +32,16 @@ export const WatchList = () => {
   const deleteCoinFromDataBase = async (userId) => {
     try {
       setLogin(true);
-      let id = userId;
+      let coin = userId;
       const { data } = await axios.delete(
-        "/deletecoin",
-        { data: { id: id } },
-        { withCredentials: true }
+        "http://localhost:4000/deletecoin",
+        { data: { id: coin } },
+        { withCredentials: true,
+          "Access-Control-Allow-Methods" : "GET, POST, OPTIONS, PUT, DELETE" }
       );
       setDeletedItem(data);
     } catch (error) {
+      console.log(error)
       navigate("/")
     }
     

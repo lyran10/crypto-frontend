@@ -72,9 +72,9 @@ const CryptoContext = ({ children }) => {
 
 // handle the token in the use Effect hook and setting states to use the data in other components
   const handleToken = () => {
-    tokenFromDataBase(JSON.parse(localStorage.getItem("id")))
+    tokenFromDataBase(localStorage.getItem("id"))
       .then((data) => {
-        setUserId(data.data.user[0].id);
+        setUserId(data.data.user[0].user_id);
         setUserName(data.data.user[0].user_name);
         getdata();
         localStorage.setItem("token",data.data.user[0]?.session_id)
@@ -95,13 +95,12 @@ const CryptoContext = ({ children }) => {
   const getdata = async () => {
     if (JSON.parse(localStorage.getItem("id"))) {
       const { data } = await axios.post(
-        "/getlist",
-        { user_id: { id: JSON.parse(localStorage.getItem("id")) } },
+        "http://localhost:4000/getlist",
+        { user_id: { user_id: JSON.parse(localStorage.getItem("id")) } },
         { withCredentials: true }
       );
-
       let user = data.data.reduce((acc, pre) => {// destructure only the coin names inside an array
-        return [...acc, pre.coin];
+        return [...acc, pre.coins] ;
       }, []);
       setUserList(user);
     }

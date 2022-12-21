@@ -46,7 +46,7 @@ export const CoinPage = () => {
     try {
       setLogin(true);
       const { data } = await axios.post(
-        "/addcoin",
+        "http://localhost:4000/addcoin",
         {coin: coin ,id: userId},
         { withCredentials: true }
       );
@@ -61,7 +61,6 @@ export const CoinPage = () => {
 // before adding coin check if the token expired or not if expired send a message that expired else add the coin
   const addCoin = (e) => {
     let token = localStorage.getItem("token")
-    console.log(token)
     checkTokenExpired(`${token}`)
       .then((data) => {
         console.log(data)
