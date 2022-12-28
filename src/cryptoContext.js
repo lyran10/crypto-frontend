@@ -72,8 +72,9 @@ const CryptoContext = ({ children }) => {
 
 // handle the token in the use Effect hook and setting states to use the data in other components
   const handleToken = () => {
-    tokenFromDataBase(localStorage.getItem("id"))
+    tokenFromDataBase(JSON.parse(localStorage.getItem("id")))
       .then((data) => {
+        console.log(data)
         setUserId(data.data.user[0].user_id);
         setUserName(data.data.user[0].user_name);
         getdata();
@@ -86,16 +87,22 @@ const CryptoContext = ({ children }) => {
                 renewIfExpired() // renew token if refresh token not expired
             }
           })
-          .catch((err) => navigate("/"));
+          .catch((err) =>{ 
+            console.log(err)
+          navigate("/")
+      });
       })
-      .catch((err) => navigate("/"));
+      .catch((err) =>{ 
+        console.log(err)
+      navigate("/")
+  });
   };
 
 // function to get the user coins which are stored in the watch list from the database to display in the watch list
   const getdata = async () => {
     if (JSON.parse(localStorage.getItem("id"))) {
       const { data } = await axios.post(
-        "http://localhost:4000/getlist",
+        "/getlist",
         { user_id: { user_id: JSON.parse(localStorage.getItem("id")) } },
         { withCredentials: true }
       );

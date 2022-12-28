@@ -34,10 +34,10 @@ export const WatchList = () => {
       setLogin(true);
       let coin = userId;
       const { data } = await axios.delete(
-        "http://localhost:4000/deletecoin",
+        "/deletecoin",
         { data: { id: coin } },
         { withCredentials: true,
-          "Access-Control-Allow-Methods" : "GET, POST, OPTIONS, PUT, DELETE" }
+         }
       );
       setDeletedItem(data);
     } catch (error) {

@@ -36,11 +36,11 @@ export const LoginModal = (props) => {
   }
 
 // check if user name exists in the data base, if exists set the state with the info and send a log in message
-  const checkLogin = () => {
-    axios
-    .post("http://localhost:4000/login", inputs, { withCredentials: true })
+  const checkLogin = async () => {
+    await axios
+    .post("/login", inputs, { withCredentials: true })
     .then((data) => {
-      console.log(data.data.user)
+      console.log(data)
       setTimeout(() => {setLogin(data.data.status);}, 500);
        if(data.data.notExists) {
         errorToasts(data.data.notExists);
@@ -48,12 +48,7 @@ export const LoginModal = (props) => {
         setUserName(data.data.user.user_name);
         setUserId(data.data.user.user_id);
         localStorage.setItem("id", JSON.stringify(data.data.user.user_id));
-        console.log(JSON.parse(localStorage.getItem("id")))
-
-        // if (localStorage.getItem("id") == null ||localStorage.getItem("id") === undefined) {
-        //   localStorage.setItem("id", JSON.stringify(data.data.user.user_id));
-        //   console.log(JSON.parse(localStorage.getItem("id")))
-        // }
+        console.log(JSON.stringify(data.data.user.user_id))
         SpinnerLoading();
         setShow(false) 
         setInputs("");
@@ -96,9 +91,11 @@ export const LoginModal = (props) => {
     });
   };
 
-// whne logged in close both the navs
+// when logged in close both the navs
   useEffect(() => {
-    checkUser();
+    if(JSON.parse(localStorage.getItem("id") !== null)){
+      checkUser();
+    }
     setOpenSideNav("translate");
     setOpenMiniNav("minitranslateback");
   }, []);

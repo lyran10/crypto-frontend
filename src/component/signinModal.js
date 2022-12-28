@@ -31,10 +31,11 @@ export const SignInModal = (props) => {
   }, [login]);
 
 // create user in the data base
-  const signIn = () => {
-    axios
-      .post("http://localhost:4000/signup", inputs)
+  const signIn = async () => {
+    await axios
+      .post("/signup", inputs)
       .then((data) => {
+        console.log(data)
         if (data.data.Registered) {
           errorToasts(data.data.Registered);
         } else {

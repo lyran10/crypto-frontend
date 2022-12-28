@@ -15,12 +15,13 @@ export const Home = () => {
   useEffect(
     () => {
       SpinnerLoading();
-      if (JSON.parse(localStorage.getItem("id") !== null)) {
-        handleToken();
-      }
-      getdata();
+      console.log(typeof(`${JSON.parse(localStorage.getItem("id"))}`))
+        if (JSON.parse(localStorage.getItem("id") !== null)) {
+          handleToken();
+        }
+        getdata();
     },
-    [addingCoin,localStorage.getItem("id")],
+    [addingCoin,JSON.parse(localStorage.getItem("id"))],
     login
   );
 
