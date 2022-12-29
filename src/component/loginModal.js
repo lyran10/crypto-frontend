@@ -37,7 +37,7 @@ export const LoginModal = (props) => {
 
 // check if user name exists in the data base, if exists set the state with the info and send a log in message
   const checkLogin = async () => {
-    await axios
+   return await axios
     .post("/login", inputs, { withCredentials: true })
     .then((data) => {
       console.log(data)
@@ -48,7 +48,6 @@ export const LoginModal = (props) => {
         setUserName(data.data.user.user_name);
         setUserId(data.data.user.user_id);
         localStorage.setItem("id", JSON.stringify(data.data.user.user_id));
-        console.log(JSON.stringify(data.data.user.user_id))
         SpinnerLoading();
         setShow(false) 
         setInputs("");
