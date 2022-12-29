@@ -8,6 +8,7 @@ import { tokenFromDataBase, checkTokenExpired } from "./config/tokenapi";
 import { CryptoState } from "../cryptoContext.js";
 import "./styles/loginsignin.css";
 import {Toastify,errorToasts,loggedInToasts} from "./toastify.js"
+import { URL } from "../App";
 
 export const LoginModal = (props) => {
   const { dNone, logins, button, sideButton, tokenLogin } = props; // props from navBar sideBar and coin page components
@@ -38,7 +39,7 @@ export const LoginModal = (props) => {
 // check if user name exists in the data base, if exists set the state with the info and send a log in message
   const checkLogin = async () => {
     try {
-    const {data} = await axios.post("/login", inputs, { withCredentials: true })
+    const {data} = await axios.post(`${URL}/login`, inputs, { withCredentials: true })
     console.log(data)
     setTimeout(() => {setLogin(data.status)}, 500);
     if(data.notExists) {

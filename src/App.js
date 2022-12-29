@@ -7,6 +7,8 @@ import { CoinPage } from "./component/pages/coinpage.js";
 import { Modale } from "../src/component/modal.js";
 import { useEffect } from "react";
 
+export const URL = process.env.URL
+
 function App() {
   const { modal } = CryptoState();
 
