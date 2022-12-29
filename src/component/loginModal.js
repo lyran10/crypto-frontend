@@ -37,28 +37,28 @@ export const LoginModal = (props) => {
 
 // check if user name exists in the data base, if exists set the state with the info and send a log in message
   const checkLogin = async () => {
-   return await axios
-    .post("/login", inputs, { withCredentials: true })
-    .then((data) => {
-      console.log(data)
-      setTimeout(() => {setLogin(data.data.status);}, 500);
-       if(data.data.notExists) {
-        errorToasts(data.data.notExists);
-      }else if (data.data.user) {
-        setUserName(data.data.user.user_name);
-        setUserId(data.data.user.user_id);
-        localStorage.setItem("id", JSON.stringify(data.data.user.user_id));
+    try {
+    const {data} = await axios.post("/login", inputs, { withCredentials: true })
+    console.log(data)
+    setTimeout(() => {setLogin(data.status)}, 500);
+    if(data.notExists) {
+      errorToasts(data.notExists);
+      }else if (data.user) {
+        setUserName(data.user.user_name);
+        setUserId(data.user.user_id);
+        localStorage.setItem("id", JSON.stringify(data.user.user_id));
         SpinnerLoading();
         setShow(false) 
         setInputs("");
         setTimeout(() => {return loggedInToasts("Logged In")},700)
-      } else {
-        navigate("/");
-        setShow(false);
-        setInputs("");
-      }
-    })
-    .catch((error) => console.log(error));
+      }else {
+         navigate("/");
+         setShow(false);
+         setInputs("");
+        }
+    } catch (error) {
+      console.log(error)
+    }
    }
 
   // check the inputs
