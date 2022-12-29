@@ -102,7 +102,7 @@ const CryptoContext = ({ children }) => {
   const getdata = async () => {
     if (JSON.parse(localStorage.getItem("id"))) {
       const { data } = await axios.post(
-        "/getlist",
+        `${process.env.REACT_APP_URL}/getlist`,
         { user_id: { user_id: JSON.parse(localStorage.getItem("id")) } },
         { withCredentials: true }
       );
