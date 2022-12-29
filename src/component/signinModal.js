@@ -32,21 +32,20 @@ export const SignInModal = (props) => {
 
 // create user in the data base
   const signIn = async () => {
-    await axios
-      .post(`${process.env.REACT_APP_URL}/signup`, inputs)
-      .then((data) => {
-        console.log(data)
-        if (data.data.Registered) {
-          errorToasts(data.data.Registered);
-        } else {
-          setShow(false);
-          navigate("/");
-          setIsSigned(true)
-          setTimeout(() => {setIsSigned(false)},8000)
-          setTimeout(() => {return singedInToasts("Signed In")},100) 
-        }
-      })
-      .catch((error) => console.log(error));
+    try {
+      const {data} = await axios.post(`${process.env.REACT_APP_URL}/signup`, inputs)
+    if (data.Registered) {
+            errorToasts(data.Registered);
+          } else {
+            setShow(false);
+            navigate("/");
+            setIsSigned(true)
+            setTimeout(() => {setIsSigned(false)},8000)
+            setTimeout(() => {return singedInToasts("Signed In")},100) 
+          }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const handleClick = (e) => {

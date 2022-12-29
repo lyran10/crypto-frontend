@@ -48,7 +48,7 @@ export const SideBar = () => {
 
 // functio to logout when clicked on the button, remove all the info that had been set in the states and alose remove cookie by using logout api
   const handleLogout = () => {
-    axios.get("/logout").then((data) => {
+    axios.get(`${process.env.REACT_APP_URL}/logout`).then((data) => {
       deleteFromDataBase(JSON.parse(localStorage.getItem("id")))
       .then((data) => console.log(data))
       .catch((err) => navigate("/"));
