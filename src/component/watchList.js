@@ -34,7 +34,7 @@ export const WatchList = () => {
       setLogin(true);
       let coin = userId;
       const { data } = await axios.delete(
-        "/deletecoin",
+        `${process.env.REACT_APP_URL}/deletecoin`,
         { data: { id: coin } },
         { withCredentials: true,
          }

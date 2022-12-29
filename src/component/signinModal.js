@@ -33,7 +33,7 @@ export const SignInModal = (props) => {
 // create user in the data base
   const signIn = async () => {
     await axios
-      .post("/signup", inputs)
+      .post(`${process.env.REACT_APP_URL}/signup`, inputs)
       .then((data) => {
         console.log(data)
         if (data.data.Registered) {

@@ -38,9 +38,8 @@ export const LoginModal = (props) => {
 
 // check if user name exists in the data base, if exists set the state with the info and send a log in message
   const checkLogin = async () => {
-    console.log(process.env.L)
     try {
-    const {data} = await axios.post(`https://crypto-backend-girw.onrender.com/login`, inputs, { withCredentials: true })
+    const {data} = await axios.post(`${process.env.REACT_APP_URL}/login`, inputs, { withCredentials: true })
     console.log(data)
     setTimeout(() => {setLogin(data.status)}, 500);
     if(data.notExists) {

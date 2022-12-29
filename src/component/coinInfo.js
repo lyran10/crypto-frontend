@@ -29,7 +29,7 @@ export const CoinInfo = ({ coin }) => {
 //use handle token function to keep a check on the token if there is id and fetch the history data also
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("id") !== null)) {
-      // handleToken();
+      handleToken();
     }
     fetchHistory();
   }, [currency, days, JSON.parse(localStorage.getItem("id"))]);

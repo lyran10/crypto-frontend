@@ -14,6 +14,7 @@ export const Home = () => {
   // when enter page show spinner loader then handle the token if there is an id and also get the users watch list from the database
   useEffect(
     () => {
+      console.log(process.env.REACT_APP_URL)
       SpinnerLoading();
       console.log(typeof(`${JSON.parse(localStorage.getItem("id"))}`))
         if (JSON.parse(localStorage.getItem("id") !== null)) {
