@@ -9,6 +9,7 @@ import { Button,Spinner } from "react-bootstrap";
 export const WatchList = () => {
   const navigate = useNavigate()
   const [isLoading,setLoading] = useState(false)
+  const [id,setID] = useState("")
   // All the states from the context API
   const {
     userList,
@@ -49,8 +50,9 @@ export const WatchList = () => {
     
   }
 // check if the token is expired then delete the coin 
-  const handleDelete = async (e) => {
+  const handleDelete = async (e,id) => {
     setLoading(true)
+    setID(id)
     let token = localStorage.getItem("token")
       checkTokenExpired(`${token}`)
         .then((data) => {
@@ -100,10 +102,10 @@ export const WatchList = () => {
                           fontSize: "10px",
                         }}
                         id={coin.id}
-                        onClick={(e) => handleDelete(e)}
+                        onClick={(e) => handleDelete(e,coin.id)}
                       >
-                        {!isLoading ? "remove" : 
-                        <Spinner animation="border" size="sm" />}
+                        {!isLoading && !userList.includes(id) ? "remove" : 
+                        "removing..."}
                       </button>
                     </span>
                   </div>
