@@ -35,7 +35,7 @@ export const SignInModal = (props) => {
 // create user in the data base
   const signIn = async () => {
     try {
-      isLoading(true)
+      setLoading(true)
       const {data} = await axios.post(`${process.env.REACT_APP_URL}/signup`, inputs)
     if (data.Registered) {
             errorToasts(data.Registered);
@@ -45,7 +45,7 @@ export const SignInModal = (props) => {
             setIsSigned(true)
             setTimeout(() => {setIsSigned(false)},8000)
             setTimeout(() => {return singedInToasts("Signed In")},100) 
-            isLoading(false)
+            setLoading(false)
           }
     } catch (error) {
       console.log(error)
@@ -187,10 +187,8 @@ export const SignInModal = (props) => {
                 <button
                  className="btn text-light border-warning mb-3"
                  onClick={handleClick}
-                 type="submit"
-                 value="Sign Up"
                 >{!isLoading ?
-                  "Sign Up" 
+                  "Sign In" 
                   : <Spinner animation="border" size="sm" />
                   }</button>
               </form>

@@ -58,10 +58,8 @@ export const WatchList = () => {
           if (data.data.error) {
             renewIfExpired()
             deleteCoinFromDataBase(e.target.id)
-            // setTimeout(() => {setID("")},2000)
           }else{
             deleteCoinFromDataBase(e.target.id)
-            // setTimeout(() => {setID("")},2000)
           }
         })
         .catch((err) => {
