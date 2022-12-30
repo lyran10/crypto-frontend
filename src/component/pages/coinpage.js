@@ -5,6 +5,7 @@ import { CryptoState } from "../../cryptoContext";
 import { SingleCoin } from "../config/coinapi";
 import { CoinInfo } from "../coinInfo.js";
 import parse from "html-react-parser";
+import {Button} from "react-bootstrap"
 import Container from "react-bootstrap/esm/Container";
 import { numberWithCommas } from "../carousel";
 import Spinner from "react-bootstrap/Spinner";
@@ -71,8 +72,10 @@ export const CoinPage = () => {
           renewIfExpired(addCoinInDataBase(e.target.id))
           setLoading(false)
         }else{
-          addCoinInDataBase(e.target.id)
-          setLoading(false)
+         addCoinInDataBase(e.target.id)
+          setTimeout(()=> {
+              setLoading(false)
+          },1000)
         }
       })
       .catch((err) => {
@@ -153,7 +156,7 @@ export const CoinPage = () => {
             <LoginModal logins="Login In to make your own watch list" />
           ) : (
             <div className="d-flex justify-content-center">
-              <button
+              <Button
                 id={coin.id}
                 onClick={(e) => addCoin(e)}
                 className={`btn text-light border-warning ${
@@ -166,10 +169,10 @@ export const CoinPage = () => {
                 {userList
                   ? !userList.includes(id)
                     ? 
-                    isLoading ?"Adding" : "Add to Watch List"
+                    isLoading ?<Spinner animation="border" size="sm" /> : "Add to Watch List"
                     : "Added to Watch List"
                   : null}
-              </button>
+              </Button>
             </div>
           )}
         </div>
