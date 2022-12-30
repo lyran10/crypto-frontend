@@ -167,7 +167,7 @@ export const CoinPage = () => {
                 {userList
                   ? userList.includes(id)
                     ? 
-                    !isLoading ?"Added to Watch List" : "Adding"
+                    isLoading ?"Added to List" : "Adding"
                     : "Add to Watch List"
                   : null}
               </button>
