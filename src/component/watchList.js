@@ -106,7 +106,7 @@ export const WatchList = () => {
                         id={coin.id}
                         onClick={(e) => handleDelete(e,coin.id)}
                       >
-                        {userList.includes(id)? "removing..." : 
+                        {id === coin.id? "removing..." : 
                         "remove"}
                       </button>
                     </span>

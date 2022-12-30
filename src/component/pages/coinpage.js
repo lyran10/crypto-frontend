@@ -75,7 +75,7 @@ export const CoinPage = () => {
          addCoinInDataBase(e.target.id)
           setTimeout(()=> {
               setLoading(false)
-          },1000)
+          },2000)
         }
       })
       .catch((err) => {
@@ -156,7 +156,7 @@ export const CoinPage = () => {
             <LoginModal logins="Login In to make your own watch list" />
           ) : (
             <div className="d-flex justify-content-center">
-              <Button
+              <button
                 id={coin.id}
                 onClick={(e) => addCoin(e)}
                 className={`btn text-light border-warning ${
@@ -172,7 +172,7 @@ export const CoinPage = () => {
                     isLoading ?<Spinner animation="border" size="sm" /> : "Add to Watch List"
                     : "Added to Watch List"
                   : null}
-              </Button>
+              </button>
             </div>
           )}
         </div>
