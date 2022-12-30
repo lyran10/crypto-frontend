@@ -25,6 +25,7 @@ export const LoginModal = (props) => {
   } = CryptoState();
   const [inputs, setInputs] = useState("");// state fro the inputs of user
   const [show, setshow] = useState(false);// state for modal
+  const [isLoading,setLoading] = useState(false)
   const navigate = useNavigate();
   const [fullscreen, setFullscreen] = useState(true);
   const [Show, setShow] = useState(false);
@@ -38,12 +39,14 @@ export const LoginModal = (props) => {
 
 // check if user name exists in the data base, if exists set the state with the info and send a log in message
   const checkLogin = async () => {
+    setLoading(true)
     try {
     const {data} = await axios.post(`${process.env.REACT_APP_URL}/login`, inputs, { withCredentials: true })
     console.log(data)
     setTimeout(() => {setLogin(data.status)}, 500);
     if(data.notExists) {
       errorToasts(data.notExists);
+      setLoading(false)
       }else if (data.user) {
         setUserName(data.user.user_name);
         setUserId(data.user.user_id);
@@ -51,14 +54,17 @@ export const LoginModal = (props) => {
         SpinnerLoading();
         setShow(false) 
         setInputs("");
+        setLoading(false)
         setTimeout(() => {return loggedInToasts("Logged In")},700)
       }else {
          navigate("/");
          setShow(false);
          setInputs("");
+         setLoading(false)
         }
     } catch (error) {
       console.log(error)
+      setLoading(false)
     }
    }
 
@@ -169,12 +175,17 @@ export const LoginModal = (props) => {
                   <br />
                 </div>
                 <div className="d-flex flex-column gap-3">
-                  <input
-                    className="loginButtons btn text-light border-warning"
-                    onClick={(e) => handleClick(e)}
-                    type="submit"
-                    value="Login"
-                  />
+                  <button
+                      className="loginButtons btn text-light border-warning"
+                      onClick={(e) => handleClick(e)}
+                  >{!isLoading ?
+                   "Login" 
+                   : <div class="d-flex justify-content-center">
+                   <div class="spinner-border" role="status">
+                     <span class="visually-hidden">Loading...</span>
+                   </div>
+                 </div>
+                   }</button>
                 </div>
               </form>
             ) : null}
