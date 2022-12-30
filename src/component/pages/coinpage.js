@@ -15,6 +15,7 @@ import { LoginModal } from "../loginModal";
 export const CoinPage = () => {
   const [coin, setCoin] = useState(); // fetch coins and store in this state
   const { id } = useParams();// use the id of the coin
+  const [isLoading,setLoading] = useState(false)
   // All states from the context api
   const {
     currency,
@@ -60,16 +61,19 @@ export const CoinPage = () => {
 
 // before adding coin check if the token expired or not if expired send a message that expired else add the coin
   const addCoin = (e) => {
+    setLoading(true)
     let token = localStorage.getItem("token")
     checkTokenExpired(`${token}`)
       .then((data) => {
         console.log(data)
         if (data.data.error) {
           console.log(data)
+          setLoading(false)
           renewIfExpired(addCoinInDataBase(e.target.id))
           
         }else{
           addCoinInDataBase(e.target.id)
+          setLoading(false)
         }
       })
       .catch((err) => {
@@ -162,7 +166,8 @@ export const CoinPage = () => {
               >
                 {userList
                   ? userList.includes(id)
-                    ? "Added to Watch List"
+                    ? 
+                    !isLoading ?"Added to Watch List" : "Adding"
                     : "Add to Watch List"
                   : null}
               </button>
