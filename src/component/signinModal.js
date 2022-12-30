@@ -184,7 +184,7 @@ export const SignInModal = (props) => {
                     </div>
                   </div>
                 </div>
-                <Button
+                <button
                  className="btn text-light border-warning mb-3"
                  onClick={handleClick}
                  type="submit"
@@ -192,7 +192,7 @@ export const SignInModal = (props) => {
                 >{!isLoading ?
                   "Sign Up" 
                   : <Spinner animation="border" size="sm" />
-                  }</Button>
+                  }</button>
               </form>
             ) : null}
           </Container>

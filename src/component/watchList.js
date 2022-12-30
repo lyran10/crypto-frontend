@@ -50,18 +50,22 @@ export const WatchList = () => {
   }
 // check if the token is expired then delete the coin 
   const handleDelete = async (e) => {
+    setLoading(true)
     let token = localStorage.getItem("token")
       checkTokenExpired(`${token}`)
         .then((data) => {
           if (data.data.error) {
             renewIfExpired()
             deleteCoinFromDataBase(e.target.id)
+            setLoading(false)
           }else{
             deleteCoinFromDataBase(e.target.id)
+            setLoading(false)
           }
         })
         .catch((err) => {
           navigate("/")
+          setLoading(false)
         });
   };
 
@@ -87,7 +91,7 @@ export const WatchList = () => {
                       {numberWithCommas(coin?.current_price.toFixed(2))}
                     </span>
                     <span>
-                      <Button
+                      <button
                         className="text-light p-1"
                         style={{
                           border: "solid 1px gold",
@@ -100,7 +104,7 @@ export const WatchList = () => {
                       >
                         {!isLoading ? "remove" : 
                         <Spinner animation="border" size="sm" />}
-                      </Button>
+                      </button>
                     </span>
                   </div>
                 </li>

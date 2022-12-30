@@ -175,13 +175,13 @@ export const LoginModal = (props) => {
                   <br />
                 </div>
                 <div className="d-flex flex-column gap-3">
-                  <Button
+                  <button
                       className="loginButtons btn text-light border-warning"
                       onClick={(e) => handleClick(e)}
                   >{!isLoading ?
                    "Login" 
                    :  <Spinner animation="border" size="sm" />
-                   }</Button>
+                   }</button>
                 </div>
               </form>
             ) : null}
