@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { numberWithCommas } from "./carousel";
 import { CryptoState } from "../cryptoContext";
 import axios from "axios";
 import { checkTokenExpired } from "./config/tokenapi";
 import { useNavigate } from "react-router-dom";
+import { Button,Spinner } from "react-bootstrap";
 
 export const WatchList = () => {
   const navigate = useNavigate()
+  const [isLoading,setLoading] = useState(false)
   // All the states from the context API
   const {
     userList,
@@ -85,7 +87,7 @@ export const WatchList = () => {
                       {numberWithCommas(coin?.current_price.toFixed(2))}
                     </span>
                     <span>
-                      <button
+                      <Button
                         className="text-light p-1"
                         style={{
                           border: "solid 1px gold",
@@ -96,8 +98,9 @@ export const WatchList = () => {
                         id={coin.id}
                         onClick={(e) => handleDelete(e)}
                       >
-                        remove
-                      </button>
+                        {!isLoading ? "remove" : 
+                        <Spinner animation="border" size="sm" />}
+                      </Button>
                     </span>
                   </div>
                 </li>

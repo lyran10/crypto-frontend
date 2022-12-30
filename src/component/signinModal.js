@@ -3,11 +3,12 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Container } from "react-bootstrap";
+import { Container,Spinner } from "react-bootstrap";
 import { useEffect } from "react";
 import { CryptoState } from "../cryptoContext.js";
 import "./styles/loginsignin.css";
 import { Toastify,errorToasts,singedInToasts } from "./toastify.js";
+
 
 export const SignInModal = (props) => {
   const { dNone } = props;
@@ -18,6 +19,7 @@ export const SignInModal = (props) => {
   const [Show, setShow] = useState(false);
   const [fullscreen, setFullscreen] = useState(true);
   const [isSigned,setIsSigned] = useState(false)
+  const [isLoading,setLoading] = useState(false)
 
 // function to make the modal responsive
   function handleShow(breakpoint) {
@@ -33,6 +35,7 @@ export const SignInModal = (props) => {
 // create user in the data base
   const signIn = async () => {
     try {
+      isLoading(true)
       const {data} = await axios.post(`${process.env.REACT_APP_URL}/signup`, inputs)
     if (data.Registered) {
             errorToasts(data.Registered);
@@ -42,9 +45,11 @@ export const SignInModal = (props) => {
             setIsSigned(true)
             setTimeout(() => {setIsSigned(false)},8000)
             setTimeout(() => {return singedInToasts("Signed In")},100) 
+            isLoading(false)
           }
     } catch (error) {
       console.log(error)
+      setLoading(false)
     }
   }
 
@@ -179,12 +184,15 @@ export const SignInModal = (props) => {
                     </div>
                   </div>
                 </div>
-                <input
-                  className="btn text-light border-warning mb-3"
-                  onClick={handleClick}
-                  type="submit"
-                  value="Sign Up"
-                />
+                <Button
+                 className="btn text-light border-warning mb-3"
+                 onClick={handleClick}
+                 type="submit"
+                 value="Sign Up"
+                >{!isLoading ?
+                  "Sign Up" 
+                  : <Spinner animation="border" size="sm" />
+                  }</Button>
               </form>
             ) : null}
           </Container>

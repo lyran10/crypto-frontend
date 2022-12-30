@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Container } from "react-bootstrap";
+import { Container,Spinner } from "react-bootstrap";
 import { tokenFromDataBase, checkTokenExpired } from "./config/tokenapi";
 import { CryptoState } from "../cryptoContext.js";
 import "./styles/loginsignin.css";
@@ -175,17 +175,13 @@ export const LoginModal = (props) => {
                   <br />
                 </div>
                 <div className="d-flex flex-column gap-3">
-                  <button
+                  <Button
                       className="loginButtons btn text-light border-warning"
                       onClick={(e) => handleClick(e)}
                   >{!isLoading ?
                    "Login" 
-                   : <div class="d-flex justify-content-center">
-                   <div class="spinner-border" role="status">
-                     <span class="visually-hidden">Loading...</span>
-                   </div>
-                 </div>
-                   }</button>
+                   :  <Spinner animation="border" size="sm" />
+                   }</Button>
                 </div>
               </form>
             ) : null}
